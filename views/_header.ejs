@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script>
+      $(window).bind("load", function(){
+       
+      var path=location.pathname;
+      console.log(path)
+      if(path==="/ledon") {
+        $(function(){
+          $('a.disable').click(function(){
+            return false;
+          })
+
+        });
+      }
+      });
+    </script>
+
+  </head>
