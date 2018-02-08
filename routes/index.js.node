@@ -1,0 +1,78 @@
+var express = require('express');
+var router = express.Router();
+var fs = require('fs');
+// var exec = require('child_process').exec;
+const execSync = require('child_process').execSync;
+const exec = require('child_process').exec;
+
+// led declaration
+// output
+const out_red=4;
+const out_green=14;
+const out_blue=2;
+// input
+const in_red=5;
+const in_green=15;
+const in_blue=6;
+
+function open_port(){
+  var led_ports = [out_red, out_green, out_blue, in_red, in_green, in_blue];
+
+  fs.writeFile('writetest.txt', data , function (err) {
+        console.log(err);
+  });
+  echo $out_red > /sys/class/gpio/export
+  echo $out_green > /sys/class/gpio/export
+  echo $out_blue > /sys/class/gpio/export
+
+  echo $in_red > /sys/class/gpio/export
+  echo $in_green > /sys/class/gpio/export
+  echo $in_blue > /sys/class/gpio/export
+}
+
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  const exec = require('child_process').exec;
+  exec('./check_led.sh', (err, stdout, stderr) => {
+    if (err) { console.log(err);  }
+    console.log(stdout)
+    if (stdout.match(/1/)) { 
+      led_status="異常なし"; 
+      console.log(stdout)
+      console.log(led_status)
+    }else{
+      led_status="異常あり";
+    }
+      // console.log(stdout)
+      // led_status = "異常なし";
+    // }
+  });
+
+  res.render('index', { 
+    title: 'クロネコ集荷依頼 / LED:'+led_status
+    // led: led_status
+  });
+    // const led_status =  execSync('./ledcheck.sh');
+    // console.log(result);
+});
+
+router.get('/ledon', function(req, res, next) {
+  res.render('index', { title: 'クロネコ集荷依頼_ON' });
+    const exec = require('child_process').exec;
+    exec('./on_led.sh;', (err, stdout, stderr) => {
+        if (err) { console.log(err);  }
+        console.log(stdout);
+    });
+});
+
+router.get('/ledoff', function(req, res, next) {
+  res.render('index', { title: 'クロネコ集荷依頼_OFF' });
+    const exec = require('child_process').exec;
+    exec('./wait_led.sh', (err, stdout, stderr) => {
+        if (err) { console.log(err);  }
+        console.log(stdout);
+    });
+});
+
+module.exports = router;

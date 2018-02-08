@@ -14,8 +14,8 @@ echo out >/sys/class/gpio/gpio2/direction
 # echo 0 >/sys/class/gpio/gpio14/value #green
 # echo 0 >/sys/class/gpio/gpio2/value #blue
 # sleep 1.5
-echo 1 >/sys/class/gpio/gpio4/value #red
-echo 1 >/sys/class/gpio/gpio14/value #green
+echo 0 >/sys/class/gpio/gpio4/value #red
+echo 0 >/sys/class/gpio/gpio14/value #green
 echo 0 >/sys/class/gpio/gpio2/value #blue
 # sleep 1.5
 # echo 0 >/sys/class/gpio/gpio14/value

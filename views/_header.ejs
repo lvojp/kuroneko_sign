@@ -8,18 +8,54 @@
     <script src="javascripts/bootstrap.min.js"></script>
     <script>
       $(window).bind("load", function(){
-       
-      var path=location.pathname;
-      console.log(path)
-      if(path==="/ledon") {
-        $(function(){
-          $('a.disable').click(function(){
-            return false;
-          })
+        setInterval("get_led_status()", 1000);
+        setInterval("get_command_status()", 1000);
+         
+        var path=location.pathname;
+        console.log(path)
+        if(path==="/ledon") {
+          $(function(){
+            $('a.disable').click(function(){
+              return false;
+            })
+          });
+        }
 
+      });
+      
+      function get_led_status(){
+        path = "status";
+        jQuery.ajax({
+            url: path,
+            type: "get",
+            success: function(data) {
+              console.log("success");
+              console.log(data)
+              result=data.toString();
+              $('div#led_status').text(result);
+            },
+            error: function(xhr, status, err) {
+              $('div#led_status').text("状態取得異常");
+            }
         });
       }
-      });
+
+      function get_command_status(){
+        path = "command_status";
+        jQuery.ajax({
+            url: path,
+            type: "get",
+            success: function(data) {
+              console.log("success");
+              console.log(data)
+              result=data.toString();
+              $('div#led_command_status').text(result);
+            },
+            error: function(xhr, status, err) {
+              $('div#led_command_status').text("状態取得異常");
+            }
+        });
+      }
     </script>
 
   </head>

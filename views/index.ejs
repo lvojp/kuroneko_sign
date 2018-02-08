@@ -3,7 +3,7 @@
 
     <header>
       <div class="text-center">
-        <h1><%= title %></h1>
+        <a href="http://192.168.11.24:3000"><h1><%= title %></h1></a>
       </div>
     </header>
 
@@ -13,13 +13,20 @@
             <a class="disable" href="./ledon"><button type="button" class="btn btn-primary btn-lg">集荷あり</button></a>
           </div>
           <div class="col-4 text-center">
-            <a href="./ledoff"><button type="button" class="btn btn-default btn-lg">集荷なし</button></a>
+            <a href="./ledoff"><button type="button" class="btn-default btn-lg">集荷なし</button></a>
           </div>
+      </div>
 
+      <div class="text-center" style="margin-top:200px;">
+        <div>LED回路 / <div id="led_status" style="display:inline"></div></div>
+        <div>LED状態 / <div id="led_command_status" style="display:inline"></div></div>
       </div>
     </div>
 
-    <footer></footer>
+    <footer>
+    
+    </footer>
 
   </body>
 </html>
+
